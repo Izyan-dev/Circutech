@@ -17,12 +17,21 @@ function login() {
 // Logout function
 function logout() {
     localStorage.removeItem("loggedIn");
-    window.location.href = "index.html";
+    window.location.href = "../index.html";
 }
 
 // Protect home page
 if (window.location.pathname.includes("home.html")) {
     if (!localStorage.getItem("loggedIn")) {
         window.location.href = "index.html";
+    }
+}
+
+function togglePassword() {
+    let passwordField = document.getElementById("password");
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+    } else {
+        passwordField.type = "password";
     }
 }
