@@ -8,7 +8,7 @@ function login() {
 
     if (username === validUsername && password === validPassword) {
         localStorage.setItem("loggedIn", "true");
-        window.location.href = "home.html";
+        window.location.href = "frontend/home.html";
     } else {
         document.getElementById('error-message').innerText = "Invalid Username or Password!";
     }
