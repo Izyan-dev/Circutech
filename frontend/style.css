@@ -1,31 +1,76 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: #fff;
 }
-.login-container, .home-container {
+
+/* Login & Home Container */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     text-align: center;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
 }
+
+h2, h1 {
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
 input {
-    display: block;
-    margin: 10px 0;
-    padding: 10px;
     width: 100%;
-}
-button {
-    background: blue;
-    color: white;
-    padding: 10px;
+    padding: 12px;
+    margin: 10px 0;
     border: none;
-    cursor: pointer;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+    font-size: 16px;
 }
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button {
+    background: #ff8c42;
+    color: white;
+}
+
+button:hover {
+    background: #e07936;
+}
+
+/* Error Message */
 #error-message {
-    color: red;
+    color: #ff4d4d;
+    margin-top: 10px;
+    font-weight: bold;
 }
