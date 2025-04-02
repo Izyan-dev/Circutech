@@ -80,3 +80,23 @@ button:hover {
     cursor: pointer;
     font-size: 18px;
 }
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 110%;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px; /* Space for the icon */
+}
+
+.toggle-password {
+    /* position: absolute; */
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #888;
+}

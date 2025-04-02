@@ -10,9 +10,13 @@
     <div class="login-container">
         <h2>Login</h2>
         <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <span class="toggle-password" onclick="togglePassword()">👁️</span>
-                <button onclick="login()">Login</button>
+        <div class="password-container">
+            <input type="password" id="password" placeholder="Password">
+            <span class="toggle-password" onclick="togglePassword()">
+                👁️
+            </span>
+        </div>
+                        <button onclick="login()">Login</button>
         <p id="error-message"></p>
     </div>
     <script src="frontend/script.js"></script>
