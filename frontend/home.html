@@ -1,16 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Circutech</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home - Circutech</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="home-container">
-        <h1>Welcome to Circutech</h1>
-        <button onclick="logout()">Logout</button>
+  <div class="home-container">
+    <h1>Welcome to <span class="brand">Circutech</span></h1>
+
+    <!-- Charts -->
+    <div class="chart-section">
+      <!-- Temperature Chart -->
+      <div class="card">
+        <iframe
+          width="100%"
+          height="260"
+          style="border: none;"
+          src="https://thingspeak.com/channels/2933755/charts/1?bgcolor=%23ffffff&color=%2300aaff&dynamic=true"
+        ></iframe>
+      </div>
+
+      <!-- Humidity Chart -->
+      <div class="card">
+        <iframe
+          width="100%"
+          height="260"
+          style="border: none;"
+          src="https://thingspeak.com/channels/2933755/charts/2?bgcolor=%23ffffff&color=%2300aaff&dynamic=true"
+        ></iframe>
+      </div>
+
+      <!-- Ultrasonic Chart -->
+      <div class="card">
+        <iframe
+          width="100%"
+          height="260"
+          style="border: none;"
+          src="https://thingspeak.com/channels/2933755/charts/3?bgcolor=%23ffffff&color=%2300aaff&dynamic=true"
+        ></iframe>
+      </div>
     </div>
-    <script src="script.js"></script>
+
+    <!-- Live Data Values -->
+    <div class="card">
+      <p class="sensor-reading">🌡️ Temperature: <span id="temperature">Loading...</span> °C</p>
+      <p class="sensor-reading">💧 Humidity: <span id="humidity">Loading...</span> %</p>
+      <p class="sensor-reading">📏 Ultrasonic Distance: <span id="ultrasonic">Loading...</span> cm</p>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    function fetchThingSpeakData() {
+      const base = "https://api.thingspeak.com/channels/2933755/fields";
+      const key = "C3Y5U7BKXVG1XTKD";
+
+      function updateField(fieldNum, elementId) {
+        const url = `${base}/${fieldNum}.json?api_key=${key}&results=1`;
+        fetch(url)
+          .then(res => res.json())
+          .then(data => {
+            const val = data.feeds[0]?.[`field${fieldNum}`] || "No data";
+            document.getElementById(elementId).innerText = val;
+          })
+          .catch(() => {
+            document.getElementById(elementId).innerText = "Error";
+          });
+      }
+
+      updateField(1, "temperature");
+      updateField(2, "humidity");
+      updateField(3, "ultrasonic");
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedIn");
+      window.location.href = "../index.html";
+    }
+
+    fetchThingSpeakData();
+    setInterval(fetchThingSpeakData, 15000); // update every 15 seconds
+  </script>
 </body>
 </html>
